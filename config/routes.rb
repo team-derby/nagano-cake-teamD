@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  root 'users/top' #トップ画面
+  root 'user#top' #トップ画面
 
   # ユーザー側のルーティング
   namespace :user do
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'admins/top' => 'admins#top' #管理者トップページ
     resources :products
-    resources :genres [:index, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resources :orders, only: [:index, :show ,:update]
     end
