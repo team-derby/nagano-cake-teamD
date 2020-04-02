@@ -1,4 +1,4 @@
-class DeliveriesController < ApplicationController
+class User::DeliveriesController < ApplicationController
   
   def index
   end
@@ -14,5 +14,5 @@ class DeliveriesController < ApplicationController
 
   def destroy
   end
-  
+
 end

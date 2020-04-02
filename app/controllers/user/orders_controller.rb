@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class User::OrdersController < ApplicationController
 
   def index
   end
@@ -17,5 +17,5 @@ class OrdersController < ApplicationController
 
   def show
   end
-  
+
 end

@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  
+class User::UsersController < ApplicationController
+  git
   def top
   end
   
@@ -17,5 +17,5 @@ class UsersController < ApplicationController
 
   def confirm
   end
-  
+
 end
