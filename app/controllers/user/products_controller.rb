@@ -1,3 +1,4 @@
+
 class User::ProductsController < ApplicationController
 
   def index

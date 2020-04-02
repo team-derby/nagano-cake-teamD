@@ -15,4 +15,5 @@ class User::CartItemsController < ApplicationController
   def destroy_all
   end
 
+
 end
