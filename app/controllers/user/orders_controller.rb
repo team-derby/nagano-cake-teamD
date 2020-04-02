@@ -1,2 +1,21 @@
-class OrdersController < ApplicationController
+class User::OrdersController < ApplicationController
+
+  def index
+  end
+
+  def new
+  end
+
+  def create
+  end
+
+  def confirm
+  end
+
+  def thanks
+  end
+
+  def show
+  end
+
 end
