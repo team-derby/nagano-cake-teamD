@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
     t.string "name"
     t.text "explanation"
     t.integer "price"
-    t.float "tax_rate"
+    t.float "tax_rate", default: 1.08
     t.string "image_id"
     t.integer "sales_status"
     t.datetime "created_at", null: false
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name_kanji"
+    t.string "last_name_kanji"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.string "post_number"
+    t.string "address"
+    t.string "phone_number"
+    t.integer "profile_status"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :explanation
       t.integer :price
-      t.float :tax_rate
+      t.float :tax_rate, default: 1.08
       t.string :image_id
       t.integer :sales_status
       t.timestamps
