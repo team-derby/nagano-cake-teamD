@@ -9,21 +9,21 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  root 'user#top' #トップ画面
 
   # ユーザー側のルーティング
   namespace :user do
+    root 'users#top' #トップ画面
     resources :products, only: [:index, :show]
     resources :users, only: [:show, :edit, :update, :destroy] do
       resources :cart_items, only: [:index, :create, :update, :destroy] do
         collection do
           delete 'destroy_all' #destroy_allをcollectionで追加
         end
-      resources :orders, only:[:index, :create, :new, :show]
       end
+      resources :orders, only:[:index, :create, :new, :show]
       resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
     end
-    get 'orders/:id/confirm' => 'orders#confirm' #注文確認画面
+    get 'users/orders/:id/confirm' => 'orders#confirm' #注文確認画面
     get 'confirm' => 'users#confirm' #退会確認ページ
     get 'thanks' => 'orders#thanks' #購入完了ページ
   end
