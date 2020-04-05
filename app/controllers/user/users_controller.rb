@@ -1,8 +1,9 @@
 class User::UsersController < ApplicationController
 
   def top
+    @randoms = Product.order("RANDOM()").limit(4)
   end
-  
+
   def show
     @user = User.find(params[:id])
   end
