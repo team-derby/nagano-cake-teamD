@@ -6,4 +6,8 @@ class User < ApplicationRecord
   has_many :deliveries, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
+  accepts_nested_attributes_for :orders, allow_destroy: true
+  accepts_nested_attributes_for :cart_items, allow_destroy: true
+  accepts_nested_attributes_for :orders, allow_destroy: true
+
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCakeTeamd</title>
+    <title>Nagano Cake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,34 @@
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+        <nav class="nav navbar-nav navbar-left">
+          <span>NAGANO CAKE</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <!--if文でサインインとアウト時の表示を変更-->
+            <% if user_signed_in? %>
+            <li><%= link_to ' マイページ', user_user_path(current_user) %></li>
+            <li><%= link_to ' 商品一覧', user_products_path %></li>
+            <li><%= link_to ' カート', user_user_cart_items_path %></li>
+            <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete %></li>
+            <% elsif admin_signed_in? %>
+            <li><%= link_to ' 商品一覧', admin_products_path %></li>
+            <li><%= link_to ' 会員一覧', admin_users_path %></li>
+            <li><%= link_to ' 注文一覧', admin_user_orders_path %></li>
+            <li><%= link_to ' ジャンル管理', admin_genres_path %></li>
+            <% else %>
+            <li><%= link_to ' 商品一覧', user_products_path %></li>
+            <li><%= link_to ' 新規登録', new_user_registration_path %></li>
+            <li><%= link_to ' ログイン', user_session_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+    </header>
+    <!--ヘッダーの記述-->
+    <div class="container">
     <%= yield %>
+    </div>
   </body>
 </html>
