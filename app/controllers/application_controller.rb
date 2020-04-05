@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!
   #デバイス機能実行前にconfigure_permitted_parametersの実行をする。
   protect_from_forgery with: :exception
 
@@ -16,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :post_number, :address, :phone_number])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :encrypted_password])
     #sign_upの際にnameのデータ操作を許。追加したカラム。
   end
 end
