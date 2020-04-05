@@ -80,7 +80,7 @@ gem 'refile-mini_magick'
 gem 'bootstrap-sass', '~> 3.3.6'
 # bootstrapの導入
 
-gem 'kaminari'
+gem 'kaminari','~> 1.1.1'
 # ページング、商品ページのみやすさ
 
 gem 'jp_prefecture'
