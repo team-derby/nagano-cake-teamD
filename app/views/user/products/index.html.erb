@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-9 col-xs-offset-3">
+    <h2 class="head">商品一覧(全<%= Product.count %>件)</h2>
+    <ul class="product-group clearfix">
+        <% @products.each do |product| %>
+          <li>
+            <%= link_to user_product_path(product) do %>
+              <%= attachment_image_tag(product, :image, :fill, 120, 120, fallback: "no_image.jpg") %>
+              <p><%= product.name %></p>
+            <% end %>
+              <p>¥<%= (product.price * product.tax_rate).round %>(税込)</p>
+          </li>
+        <% end %>
+    </ul>
+    <%= paginate @products, class: "paginate" %>
+  </div>
+</div>
