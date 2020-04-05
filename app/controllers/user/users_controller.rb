@@ -1,20 +1,24 @@
 class User::UsersController < ApplicationController
-  git
+
   def top
+    @randoms = Product.order("RANDOM()").limit(4)
   end
-  
+
   def show
+    @user = User.find(params[:id])
   end
 
   def update
-      if current_user.update(user_params)
-         redirect_to root_path #更新できた場合はTOP画面へ
-      else
-         render :edit #更新できない場合は編集画面に戻る
-      end
+    @user = User.find(params[:id])
+  	if @user.update(user_params)
+  		redirect_to user_path(@user)
+  	else
+  		render :edit
+  	end
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def destroy
