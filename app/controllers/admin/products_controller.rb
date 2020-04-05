@@ -28,7 +28,8 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to admin_product_path(@product), notice: "商品の編集が完了しました！"
-    else render :edit
+    else
+      render :edit
     end
   end
 
