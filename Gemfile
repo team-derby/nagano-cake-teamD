@@ -77,7 +77,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'refile-mini_magick'
 # サイズ調整、画像加工
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 # bootstrapの導入
 
 gem 'kaminari','~> 1.1.1'
