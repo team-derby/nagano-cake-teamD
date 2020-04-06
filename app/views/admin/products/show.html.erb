@@ -1,5 +1,6 @@
 <div class="row">
   <h2 class="head">商品 詳細画面</h2>
+  <!-- フラッシュメッセージ -->
   <p id="notice"><%= notice %></p>
 </div>
 <div class="row">
@@ -13,7 +14,7 @@
       <p style="clear:both;">商品説明　</p>
       <p><p><font size = '3'><%= @product.explanation %></font></p>
       <p style="clear:both;">ジャンル　</p>
-      <p><p><font size = '3'><%= @product.genre_id %></font></p>
+      <p><p><font size = '3'><%= @genre.name %></font></p>
       <p style="clear:both;">税込価格 (税抜価格)　</p>
       <p><p><font size = '3'><%= (@product.price * @product.tax_rate).round %> (<%= (@product.price) %>)円</font></p>
       <p style="clear:both;">販売ステータス　</p>

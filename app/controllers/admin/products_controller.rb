@@ -1,6 +1,8 @@
 class Admin::ProductsController < ApplicationController
   def index
-    @products = Product.page(params[:page])
+    @products = Product.all
+    # kaminari(ページング)用
+    @product = Product.page(params[:page])
   end
 
   def new
@@ -10,7 +12,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to request.referer, notice: "商品の作成が完了しました！"
+      redirect_to admin_product_path(@product), notice: "商品の作成が完了しました！"
     else
       render :new
     end
@@ -18,6 +20,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @genre = Genre.find(@product.genre_id)
   end
 
   def edit
