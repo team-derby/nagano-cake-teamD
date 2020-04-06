@@ -1,0 +1,30 @@
+// Place all the styles related to the admin::products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.genre-side-bar {
+  font-size: 24px;
+  list-style: none;
+  line-height: 50px;
+  margin-top: 20px;
+  border: solid 3px;
+  border-radius: 10px;
+}
+
+.genre-head {
+  font-weight: bold;
+  text-align: center;
+  border-bottom: solid 2px;
+}
+
+.genre-name {
+  padding-left: 20px
+}
+
+.sold-out {
+  color: #fff;
+  text-align: center;
+  background-color: red;
+  border: solid 3px;
+  border-radius: 10px;
+}

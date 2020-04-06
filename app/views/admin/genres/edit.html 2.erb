@@ -1,0 +1,35 @@
+<div class="row">
+  <h2 class="head">ジャンル編集画面</h2>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_for @genre, url: admin_genre_path, method: :patch do |f| %>
+
+      　<!-- エラーメッセージ -->
+        <% if @genre.errors.any? %>
+          <div id="error_explanation">
+            <h3><%= pluralize(@genre.errors.count, "error") %> prohibited this product from being saved:</h3>
+
+            <ul>
+            <% @genre.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- 入力フォーム -->
+        <div class="genre-field">
+          <%= f.label :ジャンル　%>
+          <%= f.text_field :name %>
+          <%= f.radio_button :active_status , :有効 %>
+          <%= f.label :有効　%>
+          <%= f.radio_button :active_status , :無効 %>
+          <%= f.label :無効　%>
+        </div>
+        <div class="genre-button">
+          <%= f.submit "変更を保存する", class: "btn btn-md btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
