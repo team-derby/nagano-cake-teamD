@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9">
+      <h2>会員一覧画面</h2>
+      <table class="table">
+        <thead>
+          <tr>会員ID</tr>
+          <tr>氏名</tr>
+          <tr>メールアドレス</tr>
+          <tr>ステータス</tr>
+        </thead>
+
+        <tbody>
+          <% @user.each do |user| %>
+          <tr><% user.id %></tr>
+          <tr><%= link_to admin_user_path, (user.name) %></tr>
+          <tr><% user.email %></tr>
+          <tr><% user.status %></tr>
+          <% end %>
+      </table>
+    </div>
+  </div>
+</div>

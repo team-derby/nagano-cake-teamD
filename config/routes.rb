@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
-  }
-  devise_for :users, controllers: {
+  # ユーザー側のルーティング
+  namespace :user do
+    devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
     registrations: 'users/registrations'
-  }
+    }
 
-  # ユーザー側のルーティング
-  namespace :user do
     root 'users#top' #トップ画面
     resources :products, only: [:index, :show]
     resources :users, only: [:show, :edit, :update, :destroy] do
@@ -31,6 +26,12 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング
   namespace :admin do
+    devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+    }
+    
     get 'admins/top' => 'admins#top' #管理者トップページ
     resources :products
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
