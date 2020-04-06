@@ -1,6 +1,10 @@
 <div class="row">
-  <div class="col-xs-9 col-xs-offset-3">
-    <h2 class="head">商品一覧(全<%= Product.count %>件)</h2>
+  <div class = "col-xs-3">
+    <!-- サイドバーの部分テンプレート -->
+    <%= render "sidebar", genres: @genres %>
+  </div>
+  <div class="col-xs-9">
+    <h2 class="head">商品一覧(全<%= @products.count %>件)</h2>
     <ul class="product-group clearfix">
         <% @products.each do |product| %>
           <li>
@@ -9,9 +13,13 @@
               <p><%= product.name %></p>
             <% end %>
               <p>¥<%= (product.price * product.tax_rate).round %>(税込)</p>
+              <!-- 売切れ商品のみ売切れ表示 -->
+              <% if product.sales_status == "売切れ" %>
+                <p class="sold-out">売切れ</p>
+              <% end %>
           </li>
         <% end %>
     </ul>
-    <%= paginate @products, class: "paginate" %>
+    <%= paginate @product, class: "paginate" %>
   </div>
 </div>

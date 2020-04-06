@@ -2,6 +2,7 @@
   <h2 class="head">商品一覧画面</h2>
 </div>
 <div class="row">
+  <!-- 商品一覧テーブル -->
   <table class="table table-hover">
     <thead>
       <tr class="active">
@@ -18,11 +19,11 @@
           <td><%= product.id %></td>
           <td><%= link_to product.name, admin_product_path(product) %></td>
           <td><%= product.price %></td>
-          <td><%= product.genre_id %></td>
+          <td><%= product.genre.name %></td>
           <td><%= product.sales_status %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= paginate @products, class: "paginate" %>
+  <%= paginate @product, class: "paginate" %>
 </div>

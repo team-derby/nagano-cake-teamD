@@ -1,5 +1,4 @@
 class User::UsersController < ApplicationController
-  git
   def top
   end
   

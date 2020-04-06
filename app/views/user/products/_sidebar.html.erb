@@ -1,0 +1,10 @@
+<ul class= "genre-side-bar">
+  <li class= "genre-head">ジャンル検索</li>
+    <% genres.each do |genre| %>
+      <li>
+        <%= link_to user_genre_path(genre.id) do %>
+          <p class="genre-name"><%= genre.name %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
