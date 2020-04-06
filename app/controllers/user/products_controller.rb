@@ -9,9 +9,11 @@ class User::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @genres = Genre.where(active_status: 0)
   end
 
   def genre
     @products = Product.where(genre_id: params[:id])
+    @genres = Genre.where(active_status: 0)
   end
 end
