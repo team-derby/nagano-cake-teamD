@@ -11,13 +11,16 @@
         </thead>
 
         <tbody>
-          <% @user.each do |user| %>
+          <% @users.each do |user| %>
           <tr><% user.id %></tr>
-          <tr><%= link_to admin_user_path, (user.name) %></tr>
+          <tr><%= link_to admin_user_path(user) do %>
+          <% user.email %>
+          <% end %></tr>
           <tr><% user.email %></tr>
-          <tr><% user.status %></tr>
+          <tr><% user.profile_status %></tr>
           <% end %>
       </table>
+      <%= paginate @user, class: "paginate" %>
     </div>
   </div>
 </div>
