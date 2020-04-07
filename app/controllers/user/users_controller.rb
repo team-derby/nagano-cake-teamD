@@ -2,6 +2,7 @@ class User::UsersController < ApplicationController
 
   def top
     @randoms = Product.order("RANDOM()").limit(4)
+    @genres = Genre.where(active_status: 0)
   end
 
   def show
@@ -10,11 +11,11 @@ class User::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-  	if @user.update(user_params)
-  		redirect_to user_path(@user)
-  	else
-  		render :edit
-  	end
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def edit

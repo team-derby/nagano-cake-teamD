@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
     t.integer "sales_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_products_on_genre_id"
   end
 
   create_table "users", force: :cascade do |t|

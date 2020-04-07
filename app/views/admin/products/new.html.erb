@@ -1,8 +1,10 @@
 <div class="row">
   <h2 class="head">商品 新規登録画面</h2>
+  <!-- フラッシュメッセージ -->
   <p id="notice"><%= notice %></p>
 </div>
 <div class="row">
+  <!-- 商品新規登録フォーム -->
   <%= form_for @product, url: admin_products_path do |f| %>
     <% if @product.errors.any? %>
       <div id="error_explanation">
@@ -40,7 +42,7 @@
 
       <div class="field row">
         <%= f.label :ジャンル　 %>
-        <%= f.select :genre_id, Product.genre_ids.keys.map {|k| [k, k]} %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: "---"} %>
       </div>
 
       <div class="field row">

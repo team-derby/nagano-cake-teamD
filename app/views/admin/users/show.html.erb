@@ -3,37 +3,35 @@
     <div class="col-xs-9">
       <h2>会員詳細画面</h2>
         <table class="table">
-        <% @user.each do |user| %>
           <tr>
             <th>顧客ID</th>
-            <td><% user.status %></td>
+            <td><% @user.id %></td>
           </tr>
           <tr>
             <th>氏名</th>
-            <td><% user.first_name_kanji %><% user.last_name_kanji %></td>
+            <td><% @user.first_name_kanji %><% user.last_name_kanji %></td>
           </tr>
           <tr>
             <th>フリガナ</th>
-            <td><% user.first_name_kana %><% user.last_name_kana %></td>
+            <td><% @user.first_name_kana %><% user.last_name_kana %></td>
           </tr>
           <tr>
             <th>郵便番号</th>
-            <td><% user.post_number %></td>
+            <td><% @user.post_number %></td>
           </tr>
           <tr>
             <th>住所</th>
-            <td><% user.address %></td>
+            <td><% @user.address %></td>
           </tr>
           <tr>
             <th>電話番号</th>
-            <td><% user.phone_number %></td>
+            <td><% @user.phone_number %></td>
           </tr>
           <tr>
             <th>メールアドレス</th>
-            <td><% user.email %></td>
+            <td><% @user.email %></td>
           </tr>
           <tr>
-          <% end %>
             <th><%= link_to "編集する", edit_admin_user_path %></th>
             <th><%= link_to "注文履歴一覧をする", admin_user_orders_path %></th>
           </tr>
