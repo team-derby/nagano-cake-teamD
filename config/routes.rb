@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-
   # ユーザー側のルーティング
   namespace :user do
     root 'users#top' #トップ画面

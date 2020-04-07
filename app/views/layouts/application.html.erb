@@ -25,8 +25,9 @@
             <% elsif admin_signed_in? %>
             <li><%= link_to ' 商品一覧', admin_products_path %></li>
             <li><%= link_to ' 会員一覧', admin_users_path %></li>
-            <li><%= link_to ' 注文一覧', admin_user_orders_path %></li>
+            <li><%= link_to ' 注文一覧', '/admin/users/:user_id/orders/:id' %></li>
             <li><%= link_to ' ジャンル管理', admin_genres_path %></li>
+            <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete %></li>
             <% else %>
             <li><%= link_to ' 商品一覧', user_products_path %></li>
             <li><%= link_to ' 新規登録', new_user_registration_path %></li>
