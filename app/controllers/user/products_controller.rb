@@ -10,6 +10,7 @@ class User::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @genres = Genre.where(active_status: 0)
+    @cart_item = CartItem.new
   end
 
   def genre
