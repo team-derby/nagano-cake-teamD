@@ -33,8 +33,7 @@ Rails.application.routes.draw do
     get 'admins/top' => 'admins#top' #管理者トップページ
     resources :products
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update, :destroy] do
-      resources :orders, only: [:index, :show ,:update]
-    end
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :orders, only: [:index, :show ,:update]
   end
 end
