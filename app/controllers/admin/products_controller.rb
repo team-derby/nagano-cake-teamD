@@ -1,8 +1,6 @@
 class Admin::ProductsController < ApplicationController
   def index
-    @products = Product.all
-    # kaminari(ページング)用
-    @product = Product.page(params[:page])
+    @products = Product.page(params[:page])
   end
 
   def new

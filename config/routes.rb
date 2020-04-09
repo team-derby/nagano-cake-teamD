@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-
   # ユーザー側のルーティング
   namespace :user do
     root 'users#top' #トップ画面
@@ -24,7 +23,7 @@ Rails.application.routes.draw do
       resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
     end
     get 'genre/:id' => 'products#genre', as:'genre' #ジャンル別画面
-    get 'users/orders/:id/confirm' => 'orders#confirm' #注文確認画面
+    post 'users/:user_id/orders/confirm' => 'orders#confirm' #注文確認画面
     get 'confirm' => 'users#confirm' #退会確認ページ
     get 'thanks' => 'orders#thanks' #購入完了ページ
   end
@@ -34,8 +33,7 @@ Rails.application.routes.draw do
     get 'admins/top' => 'admins#top' #管理者トップページ
     resources :products
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update, :destroy] do
-      resources :orders, only: [:index, :show ,:update]
-    end
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :orders, only: [:index, :show ,:update]
   end
 end

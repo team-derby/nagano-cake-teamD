@@ -1,23 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-9">
       <h2>会員一覧画面</h2>
-      <table class="table">
+  </div>
+      <table class="table table-hover">
         <thead>
-          <tr>会員ID</tr>
-          <tr>氏名</tr>
-          <tr>メールアドレス</tr>
-          <tr>ステータス</tr>
+          <tr class="active">
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
         </thead>
 
         <tbody>
-          <% @user.each do |user| %>
-          <tr><% user.id %></tr>
-          <tr><%= link_to admin_user_path, (user.name) %></tr>
-          <tr><% user.email %></tr>
-          <tr><% user.status %></tr>
-          <% end %>
+          <% @users.each do |user| %>
+           <tr>
+            <th><%= user.id %></th>
+            <th><%= link_to admin_user_path(user) do %>
+            <%= user.first_name_kanji %>
+            <%= user.last_name_kanji %>
+            <% end %></th>
+            <th><%= user.email %></th>
+            <th><%= user.profile_status %></th>
+            <% end %>
+          </tr>
+        </tbody>
       </table>
-    </div>
-  </div>
+      <%= paginate @user, class: "paginate" %>
 </div>
