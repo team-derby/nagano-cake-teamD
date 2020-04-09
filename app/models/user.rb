@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   enum profile_status:{ 有効: 0, 退会済: 1}
 
+  
 end

@@ -19,7 +19,7 @@
         <table class="table">
           <tr>
             <th><%= f.label :顧客ID %></th>
-            <td><%= f.text_field :user.id %></td>
+            <td><%= @user.id %></td>
           </tr>
           <tr>
             <th><%= f.label :氏名 %></th>
@@ -43,15 +43,19 @@
           </tr>
           <tr>
             <th><%= f.label :メールアドレス %></th>
-            <td><%= f.text_field :mail %></td>
+            <td><%= f.text_field :email %></td>
           </tr>
           <tr>
             <th><%= f.label :会員ステータス %></th>
-            <th><%= f.radio_button :profile_status , :有効 %></th>
-            <th><%= f.radio_button :profile_status , :退会済み %></th>
+            <th><%= f.radio_button :profile_status , :有効 %>
+            <%= f.label :有効　%></th>
+            <th><%= f.radio_button :profile_status , :退会済み %>
+            <%= f.label :退会済み　%></th>
           </tr>
           <tr>
-            <th><% f.submit "変更点を保存する" %></th>
+            <div class="col-xs-3">
+              <th><%= f.submit "変更点を保存する", class: "btn btn-md btn-primary" %></th>
+            </div>
           </tr>
         </table>
         <% end %>

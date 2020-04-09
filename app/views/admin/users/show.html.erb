@@ -1,39 +1,39 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-9">
+    <div class="col-xs-3">
       <h2>会員詳細画面</h2>
         <table class="table">
           <tr>
             <th>顧客ID</th>
-            <td><% @user.id %></td>
+            <td><%= @user.id %><%= @user.profile_status %></td>
           </tr>
           <tr>
             <th>氏名</th>
-            <td><% @user.first_name_kanji %><% user.last_name_kanji %></td>
+            <td><%= @user.first_name_kanji %><%= @user.last_name_kanji %></td>
           </tr>
           <tr>
             <th>フリガナ</th>
-            <td><% @user.first_name_kana %><% user.last_name_kana %></td>
+            <td><%= @user.first_name_kana %><%= @user.last_name_kana %></td>
           </tr>
           <tr>
             <th>郵便番号</th>
-            <td><% @user.post_number %></td>
+            <td><%= @user.post_number %></td>
           </tr>
           <tr>
             <th>住所</th>
-            <td><% @user.address %></td>
+            <td><%= @user.address %></td>
           </tr>
           <tr>
             <th>電話番号</th>
-            <td><% @user.phone_number %></td>
+            <td><%= @user.phone_number %></td>
           </tr>
           <tr>
             <th>メールアドレス</th>
-            <td><% @user.email %></td>
+            <td><%= @user.email %></td>
           </tr>
           <tr>
-            <th><%= link_to "編集する", edit_admin_user_path %></th>
-            <th><%= link_to "注文履歴一覧をする", admin_user_orders_path %></th>
+            <th><%= link_to "編集する", edit_admin_user_path, class: "btn btn-md btn-primary" %></th>
+            <th><%= link_to "注文履歴一覧をする", admin_user_orders_path, class: "btn btn-md btn-primary" %></th>
           </tr>
         </table>
     </div>
