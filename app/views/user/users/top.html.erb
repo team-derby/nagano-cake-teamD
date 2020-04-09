@@ -17,11 +17,11 @@
             <% @randoms.each do |random| %>
                 <div class="col-md-2">
                     <div>
-                        <%= link_to user_product_path(product) do %>
-                          <%= attachment_image_tag(product, :image, 100, 150, :fill, format: 'jpg') %>
+                        <%= link_to user_product_path(random) do %>
+                          <%= attachment_image_tag(random, :image, 100, 150, :fill, format: 'jpg') %>
                         <% end %>
-                        <p class="name"><%= product.name %></p>
-                        <p class="price"><%= product.price %></p>
+                        <p class="name"><%= random.name %></p>
+                        <p class="price"><%= random.price %></p>
                     </div>
                 </div>
             <% end %>
