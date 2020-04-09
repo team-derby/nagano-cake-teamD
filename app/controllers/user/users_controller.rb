@@ -43,7 +43,7 @@ class User::UsersController < ApplicationController
     @user = User.find(current_user.id)
     return unless user_signed_in? && @user.profile_status?
     sign_out
-    flash[:alert] = "Your team account has already been deleted."
+    flash[:alert] = "Your account has already been deleted."
     redirect_to new_user_session_path
   end
 
