@@ -1,10 +1,8 @@
 class User::ProductsController < ApplicationController
   def index
     # ジャンルテーブルと結合させ、ジャンルテーブルが有効なレコードを取得
-    @products = Product.joins(:genre => :products).where(genres: { active_status: 0})
+    @products = Product.includes(:genre).where(genres: { active_status: "0"}).page(params[:page])
     @genres = Genre.where(active_status: 0)
-    # kaminari(ページング)用
-    @product = Product.page(params[:page])
   end
 
   def show
