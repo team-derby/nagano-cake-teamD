@@ -32,7 +32,7 @@ class User::DeliveriesController < ApplicationController
   def destroy
     @delivery = Delivery.find(params[:id])
     @delivery.destroy
-    redirect_to request.referer, notice: "商品の削除が完了しました！"
+    redirect_to request.referer, notice: "配送先の削除が完了しました！"
   end
 
   private

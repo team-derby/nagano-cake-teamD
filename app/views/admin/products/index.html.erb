@@ -1,5 +1,5 @@
 <div class="row">
-  <h2 class="head">商品一覧画面</h2>
+  <h2 class="heading">商品一覧画面</h2>
 </div>
 <div class="row">
   <!-- 商品一覧テーブル -->
@@ -18,12 +18,12 @@
         <tr>
           <td><%= product.id %></td>
           <td><%= link_to product.name, admin_product_path(product) %></td>
-          <td><%= product.price %></td>
+          <td><%= product.price %>円</td>
           <td><%= product.genre.name %></td>
           <td><%= product.sales_status %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= paginate @product, class: "paginate" %>
+  <%= paginate @products, class: "paginate" %>
 </div>

@@ -4,7 +4,8 @@
     <!-- フラッシュメッセージ -->
     <p id="notice"><%= notice %></p>
       <%= form_for @delivery, url: user_user_delivery_path(user_id: current_user.id, id: @delivery.id), method: :patch do |f| %>
-      <table style="border:none;" width="600" height="150">
+      <table style="border:none; border-collapse: separate;
+border-spacing: 20px 10px;" width="700">
         <!-- エラーメッセージ -->
         <% if @delivery.errors.any? %>
         <div id="error_explanation">
@@ -19,15 +20,15 @@
       <% end %>
         <tr>
           <th><%= f.label :'郵便番号(ハイフンなし)' %></th>
-          <td><%= f.text_field :post_number, class: "post_numer" %></td>
+          <td><%= f.text_field :post_number %></td>
         </tr>
         <tr>
           <th><%= f.label :'住所' %></th>
-          <td><%= f.text_field :post_address, class: "post_address" %></td>
+          <td><%= f.text_field :post_address, size: "50x10" %></td>
         </tr>
         <tr>
           <th><%= f.label :'宛名' %></th>
-          <td><%= f.text_field :post_name, class: "post_name" %></td>
+          <td><%= f.text_field :post_name %></td>
           <td><%= f.submit "編集する", class: 'btn btn-success btn-md' %></td>
         </tr>
       </table>
