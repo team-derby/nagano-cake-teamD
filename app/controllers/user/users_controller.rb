@@ -1,6 +1,10 @@
 class User::UsersController < ApplicationController
+
+  before_action :authenticate_user!
+
   def top
     @randoms = Product.order("RANDOM()").limit(4)
+    @genres = Genre.where(active_status: 0)
   end
 
   def show
@@ -9,11 +13,11 @@ class User::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-  	if @user.update(user_params)
-  		redirect_to user_path(@user)
-  	else
-  		render :edit
-  	end
+    if @user.update(user_params)
+      redirect_to user_user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def edit
@@ -21,14 +25,26 @@ class User::UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.update(profile_status: '退会済')
+      redirect_to user_products_path
   end
 
   def confirm
+    @user = User.find(current_user.id)
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :post_number, :address, :phone_number, :email)
+  end
+  
+  def authenticate_team!
+    @user = User.find(current_user.id)
+    return unless user_signed_in? && @user.profile_status?
+    sign_out
+    flash[:alert] = "Your account has already been deleted."
+    redirect_to new_user_session_path
   end
 
   #url直接防止　メソッドを自己定義してbefore_actionで発動。

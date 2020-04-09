@@ -10,4 +10,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :cart_items, allow_destroy: true
   accepts_nested_attributes_for :orders, allow_destroy: true
 
+  enum profile_status:{ 有効: 0, 退会済: 1}
+
+  
 end

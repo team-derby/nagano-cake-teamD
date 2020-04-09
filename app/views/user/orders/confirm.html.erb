@@ -1,0 +1,69 @@
+<div class="row">
+  <h2><span style="background-color: #F5F5F5;">注文情報確認</span></h2>
+</div>
+<div class="row">
+  <!-- 商品一覧テーブル -->
+  <%= form_for @order, url: user_user_orders_path(user_id: current_user.id) do |f| %>
+    <div class="col-xs-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="active">
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- cart_item出来たら -->
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-4">
+      <table class="table table-bordered">
+        <tr>
+          <td class="active">送料</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="active">商品合計</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="active">請求金額</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <table style="border:none; border-collapse: separate;
+border-spacing: 20px 10px;" width="600">
+          <tr>
+            <th>支払い方法</th>
+            <td><%= f.hidden_field :payment_method %>
+              <%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th>お届け先</th>
+            <td>
+              <%= f.hidden_field :post_number %>
+              <%= @order.post_number %>
+              <%= f.hidden_field :post_address %>
+              <%= @order.post_address %></td>
+          </tr>
+          <tr>
+            <th>
+            <td>
+              <%= f.hidden_field :post_name %>
+              <%= @order.post_name %>
+            </td>
+          </tr>
+        </table>
+        <div class="order-confirm-button" style="text-align: center;">
+          <%= f.submit "購入を確定する", class: "btn btn-lg btn-success" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

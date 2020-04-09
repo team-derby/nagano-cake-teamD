@@ -22,27 +22,17 @@
   color: red;
 }
 
-.product-group {
-  list-style: none;
-}
-
-.product-group li {
-  float:left;
-  margin-right: 30px;
-  width: 120px;
-  height: 300px
-}
-
-.head {
+.heading {
   margin-bottom: 30px;
 }
 
-.field {
-  margin-bottom: 30px;
- }
+.frame {
+  display: inline-block;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+}
 
-.button {
-  margin: 400px 0 0 100px;
+.product-button {
+  margin: 400px 0 0 20px;
 }
 
 .product-detail p{

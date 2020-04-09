@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
     end
     get 'genre/:id' => 'products#genre', as:'genre' #ジャンル別画面
-    get 'users/orders/:id/confirm' => 'orders#confirm' #注文確認画面
+    post 'users/:user_id/orders/confirm' => 'orders#confirm' #注文確認画面
     get 'confirm' => 'users#confirm' #退会確認ページ
     get 'thanks' => 'orders#thanks' #購入完了ページ
   end
