@@ -1,6 +1,7 @@
 class User::UsersController < ApplicationController
   def top
     @randoms = Product.order("RANDOM()").limit(4)
+    @genres = Genre.where(active_status: 0)
   end
 
   def show
