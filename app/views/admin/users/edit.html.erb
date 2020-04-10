@@ -4,17 +4,16 @@
       <%= form_for @user, url: admin_user_path, method: :patch do |f| %>
 
       <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
-
-        <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+        <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <p><%= @user.errors.count %>errors prohibited this obj from being saved:</p>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
       </div>
-    <% end %>
-    
+      <% end %>
+      
       <h2>会員編集画面</h2>
         <table class="table">
           <tr>

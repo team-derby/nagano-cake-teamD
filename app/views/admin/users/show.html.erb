@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <th><%= link_to "編集する", edit_admin_user_path, class: "btn btn-md btn-primary" %></th>
-            <th><%= link_to "注文履歴一覧をする", admin_user_orders_path, class: "btn btn-md btn-primary" %></th>
+            <th><%= link_to "注文履歴一覧をする", admin_user_orders_path(@user), class: "btn btn-md btn-primary" %></th>
           </tr>
         </table>
     </div>
