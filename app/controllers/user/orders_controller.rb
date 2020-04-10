@@ -11,6 +11,13 @@ class User::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @user = User.find(params[:user_id])
+    # 現在のユーザーのcart_items情報の取得(orderはcart_itemをリレーションがないためuserを介している。)
+    @cart_items = CartItem.includes(:user).where(users: { id: current_user.id})
+    # 商品合計の計算
+    @total = 0
+    @cart_items.each do |cart_item|
+      @total += (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count
+    end
     # ご自身の住所を選択した場合
     if params[:addresses] == "1"
       @order.post_number = @user.post_number
@@ -23,14 +30,19 @@ class User::OrdersController < ApplicationController
       @order.post_address = @delivery.post_address
       @order.post_name = @delivery.post_name
     end
-    #新しいお届け先を選択した場合(if params[:addresses] == "3"はいらない？)
+    #新しいお届け先を選択した場合(if params[:addresses] == "3"はいらない
   end
 
   def create
     @order = Order.new(order_params)
     @user = User.find(params[:user_id])
+    cart_items = CartItem.includes(:user).where(users: { id: current_user.id})
     @order.user_id = @user.id
     if @order.save
+      # 注文が確定したらcart_itemの削除
+      cart_items.each do |cart_item|
+      cart_item.destroy
+    end
       redirect_to user_thanks_path
     else
       @user = User.find(params[:user_id])

@@ -4,7 +4,7 @@
 <div class="row">
   <!-- 商品一覧テーブル -->
   <%= form_for @order, url: user_user_orders_path(user_id: current_user.id) do |f| %>
-    <div class="col-xs-8">
+    <div class="col-xs-9">
       <table class="table table-bordered">
         <thead>
           <tr class="active">
@@ -15,23 +15,38 @@
           </tr>
         </thead>
         <tbody>
-            <!-- cart_item出来たら -->
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <!-- '&nbsp;'は空白を開けるための文字列 -->
+              <td><%= attachment_image_tag(cart_item.product, :image, :fill, 30, 30, fallback: "no_image.jpg") %>&nbsp;<%= cart_item.product.name %></td>
+              <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
+              <td><%= cart_item.count %></td>
+              <td><%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <table class="table table-bordered">
         <tr>
           <td class="active">送料</td>
-          <td></td>
+          <td>
+            <%= f.hidden_field :postage %>
+            <%= @order.postage %>
+          </td>
         </tr>
         <tr>
           <td class="active">商品合計</td>
-          <td></td>
+          <td><%= @total %></td>
         </tr>
         <tr>
           <td class="active">請求金額</td>
-          <td></td>
+          <td>
+            <!-- valueで渡す値を指定 -->
+            <%= f.hidden_field :total_price, value: @total + @order.postage %>
+            <%= @total + @order.postage %>
+          </td>
         </tr>
       </table>
     </div>
@@ -41,7 +56,8 @@
 border-spacing: 20px 10px;" width="600">
           <tr>
             <th>支払い方法</th>
-            <td><%= f.hidden_field :payment_method %>
+            <td>
+              <%= f.hidden_field :payment_method %>
               <%= @order.payment_method %></td>
           </tr>
           <tr>
