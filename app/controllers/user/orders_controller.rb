@@ -39,10 +39,17 @@ class User::OrdersController < ApplicationController
     cart_items = CartItem.includes(:user).where(users: { id: current_user.id})
     @order.user_id = @user.id
     if @order.save
-      # 注文が確定したらcart_itemの削除
+      # 注文が確定したらorder_itemsの作成
       cart_items.each do |cart_item|
+      @order_items = OrderItem.new
+      @order_items.order_id = @order.id
+      @order_items.product_id = cart_item.product_id
+      @order_items.count = cart_item.count
+      @order_items.tax_included_price = (cart_item.product.price * cart_item.product.tax_rate).round
+      @order_items.save
+      # 注文が確定したらcart_itemの削除
       cart_item.destroy
-    end
+      end
       redirect_to user_thanks_path
     else
       @user = User.find(params[:user_id])
