@@ -12,5 +12,14 @@ class User < ApplicationRecord
 
   enum profile_status:{ 有効: 0, 退会済: 1}
 
-  
+
+  validates :first_name_kanji, presence: true
+  validates :last_name_kanji, presence: true
+  validates :first_name_kana, presence: true
+  validates :last_name_kana, presence: true
+  validates :post_number, presence: true,length: { maximum: 7 }
+  validates :address, presence: true
+  validates :phone_number, presence: true,length: { maximum: 10 }
+  validates :email, presence: true
+
 end
