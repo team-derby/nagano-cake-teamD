@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "postage"
+    t.integer "postage", default: 1
     t.integer "total_price"
     t.integer "request_status"
     t.string "post_number"
