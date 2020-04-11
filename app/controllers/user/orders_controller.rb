@@ -1,6 +1,9 @@
 class User::OrdersController < ApplicationController
 
   def index
+    @user = current_user
+    orders = current_user.orders
+    @total = 0
   end
 
   def new
@@ -61,6 +64,10 @@ class User::OrdersController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @order = Order.find(params[:id])
+    orders = current_user.orders
+    cart_items = current_user.cart_items
   end
 
   private
