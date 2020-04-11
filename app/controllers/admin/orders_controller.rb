@@ -27,6 +27,11 @@ class Admin::OrdersController < ApplicationController
 	end
 	def show
 		@order = Order.find(params[:id])
-		@order_items = Order_item.find(params[:id])
+		@order_items = @order.order_items
 	end
+
+	private
+	def order_params
+    params.require(:order).permit(:user_id, :postage, :total_price, :request_status, :post_address, :post_name, :payment_method)
+  	end
 end
