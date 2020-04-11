@@ -17,7 +17,8 @@ class User::CartItemsController < ApplicationController
     @cart_item.user_id = current_user.id
 
     # product_idの値を設定する
-    #@cart_item.product_id = .id
+    # 下の行を使う場合、上の(cart_params)を消す(updateアクションを2回処理してしまうため)
+    #@cart_item.product_id = params[:cart_item][:product_id].to_i
 
     # saveする
     @cart_item.save

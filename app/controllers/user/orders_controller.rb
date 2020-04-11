@@ -1,14 +1,9 @@
 class User::OrdersController < ApplicationController
 
   def index
-    @order = Order.find(params[:id])
     @user = current_user
     orders = current_user.orders
-    cart_items = current_user.cart_items
     @total = 0
-    cart_items.each do |cart_item|
-      @total += (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count
-    end
   end
 
   def new
@@ -51,12 +46,9 @@ class User::OrdersController < ApplicationController
 
   def show
     @user = current_user
+    @order = Order.find(params[:id])
     orders = current_user.orders
     cart_items = current_user.cart_items
-    @total = 0
-    cart_items.each do |cart_item|
-      @total += (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count
-    end
   end
 
   private
