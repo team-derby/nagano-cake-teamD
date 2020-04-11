@@ -1,6 +1,6 @@
 class User::UsersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:top]
 
   def top
     @randoms = Product.order("RANDOM()").limit(4)
@@ -14,7 +14,7 @@ class User::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_user_path(@user)
+      redirect_to user_user_path(@user),notice: "編集が完了しました！"
     else
       render :edit
     end
@@ -27,7 +27,8 @@ class User::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.update(profile_status: '退会済')
-      redirect_to user_products_path
+    sign_out @user
+      redirect_to user_root_path,notice: "退会が完了しました！"
   end
 
   def confirm
