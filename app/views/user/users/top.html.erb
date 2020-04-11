@@ -19,7 +19,9 @@
                 <div class="col-md-2">
                     <div>
                         <%= link_to user_product_path(random) do %>
-                          <%= attachment_image_tag(random, :image, 100, 150, :fill, format: 'jpg') %>
+
+                          <%= attachment_image_tag(random, :image, 100, 150, :fill, fallback: "no_image.jpg") %>
+
                         <% end %>
                         <p class="name"><%= random.name %></p>
                         <p class="price"><%= random.price %></p>
