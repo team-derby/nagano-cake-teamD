@@ -38,8 +38,16 @@
               <%= order.post_address %>
               <%= order.post_name %>
             </td>
-            <td><%= order.product.name %></td>
-            <td><%= @order_items.tax_included_price %></td>
+            <td>
+              <% order.order_items.each do |order_item|%>
+                <%= order_item.product.name %>
+              <% end %>
+            </td>
+            <td>
+              <% order.order_items.each do |order_item|%>
+                <%= @total += (order_item.tax_included_price * order_item.product.tax_rate).round * order_item.count %>
+              <% end %>
+            </td>
             <td><%= order.request_status %></td>
             <td><%= link_to "表示する", user_user_order_path(id: order.id), method: :get, class: 'btn btn-danger btn-md' %></td>
           </tr>

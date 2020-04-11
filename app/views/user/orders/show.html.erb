@@ -53,7 +53,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @user.order.@total %></td>
+          <td><%= (@user.order.total_price - @user.order.postage) %></td>
           <td><%= @user.order.postage %></td>
           <td><%= @user.order.total_price %></td>
         </tr>
@@ -71,15 +71,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @user.cart_items.each do |cart_item|%>
+        <% @order.order_items.each do |order_item|%>
           <tr>
-            <td><%= cart_item.product.name %></td>
-            <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
+            <td><%= order_item.product.name %></td>
+            <td><%= (order_item.product.price * order_item.product.tax_rate).round %></td>
             <td>
-              <%= cart_item.count %>
+              <%= order_item.count %>
             </td>
-            <td>
-              <%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
+            <td><%= (order_item.product.price * order_item.product.tax_rate).round * order_item.count %></td>
           </tr>
         <% end %>
       </tbody>
