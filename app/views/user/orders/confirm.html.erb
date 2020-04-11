@@ -3,30 +3,30 @@
 </div>
 <div class="row">
   <!-- 商品一覧テーブル -->
-  <%= form_for @order, url: user_user_orders_path(user_id: current_user.id) do |f| %>
-    <div class="col-xs-9">
-      <table class="table table-bordered">
-        <thead>
-          <tr class="active">
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
+  <div class="col-xs-9">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="active">
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <!-- '&nbsp;'は空白を開けるための文字列 -->
+            <td><%= attachment_image_tag(cart_item.product, :image, :fill, 30, 30, fallback: "no_image.jpg") %>&nbsp;<%= cart_item.product.name %></td>
+            <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
+            <td><%= cart_item.count %></td>
+            <td><%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
           </tr>
-        </thead>
-        <tbody>
-          <% @cart_items.each do |cart_item| %>
-            <tr>
-              <!-- '&nbsp;'は空白を開けるための文字列 -->
-              <td><%= attachment_image_tag(cart_item.product, :image, :fill, 30, 30, fallback: "no_image.jpg") %>&nbsp;<%= cart_item.product.name %></td>
-              <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
-              <td><%= cart_item.count %></td>
-              <td><%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= form_for @order, url: user_user_orders_path(user_id: current_user.id) do |f| %>
     <div class="col-xs-3">
       <table class="table table-bordered">
         <tr>
@@ -53,7 +53,7 @@
     <div class="row">
       <div class="col-xs-12">
         <table style="border:none; border-collapse: separate;
-border-spacing: 20px 10px;" width="600">
+  border-spacing: 20px 10px;" width="600">
           <tr>
             <th>支払い方法</th>
             <td>
