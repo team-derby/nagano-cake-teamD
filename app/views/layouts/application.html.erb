@@ -12,7 +12,12 @@
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
         <nav class="nav navbar-nav navbar-left">
-          <span>NAGANO CAKE</span>
+          <h1>NAGANO CAKE</h1>
+        </nav>
+        <nav class="nav navbar-nav">
+            <% if user_signed_in? %>
+                <h4><%= current_user.first_name_kanji %><%= current_user.last_name_kanji %>さん、ようこそ！！！！</h4>
+            <% end %>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
@@ -20,12 +25,12 @@
             <% if user_signed_in? %>
             <li><%= link_to ' マイページ', user_user_path(current_user) %></li>
             <li><%= link_to ' 商品一覧', user_products_path %></li>
-            <li><%= link_to ' カート', '/user/users/:user_id/cart_items' %></li>
+            <li><%= link_to ' カート', user_user_cart_items_path(current_user) %></li>
             <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete %></li>
             <% elsif admin_signed_in? %>
             <li><%= link_to ' 商品一覧', admin_products_path %></li>
             <li><%= link_to ' 会員一覧', admin_users_path %></li>
-            <li><%= link_to ' 注文一覧', '/admin/users/:user_id/orders/:id' %></li>
+            <li><%= link_to ' 注文一覧', admin_orders_path %></li>
             <li><%= link_to ' ジャンル管理', admin_genres_path %></li>
             <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete %></li>
             <% else %>
