@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :post_number, presence: true,length: { maximum: 7 }
   validates :address, presence: true
-  
+
   validates :phone_number, presence: true,length: { maximum: 11 }
   validates :email, presence: true
 

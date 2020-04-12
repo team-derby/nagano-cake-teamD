@@ -29,16 +29,15 @@
       </thead>
       <tbody>
           <tr>
-            <td><%= @user.order.created_at %></td>
+            <td><%= @order.created_at %></td>
             <td>
-              <%= @user.order.post_number %>
-              <%= @user.order.post_address %>
-              <%= @user.order.post_name %>
+              <%= @order.post_number %>
+              <%= @order.post_address %>
+              <%= @order.post_name %>
             </td>
-            <td><%= @user.order.payment_method %></td>
-            <td><%= @user.order.request_status %></td>
+            <td><%= @order.payment_method %></td>
+            <td><%= @order.request_status %></td>
           </tr>
-        <% end %>
       </tbody>
     </table>
 
@@ -53,14 +52,14 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= (@user.order.total_price - @user.order.postage) %></td>
-          <td><%= @user.order.postage %></td>
-          <td><%= @user.order.total_price %></td>
+          <td><%= (@order.total_price - @order.postage) %></td>
+          <td><%= @order.postage %></td>
+          <td><%= @order.total_price %></td>
         </tr>
       </tbody>
     </table>
 
-<h3>注文内容</h3>    
+<h3>注文内容</h3>
     <table class="table table-hover table-bordered">
       <thead>
         <tr class="active">
