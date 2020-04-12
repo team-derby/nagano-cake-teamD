@@ -23,11 +23,13 @@
           <ul class="nav navbar-nav navbar-right">
             <!--if文でサインインとアウト時の表示を変更-->
             <% if user_signed_in? %>
+            <li><%= link_to ' Nagano Cakeについて', about_path %></li>
             <li><%= link_to ' マイページ', user_user_path(current_user) %></li>
             <li><%= link_to ' 商品一覧', user_products_path %></li>
             <li><%= link_to ' カート', user_user_cart_items_path(current_user) %></li>
             <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete %></li>
             <% elsif admin_signed_in? %>
+            <li><%= link_to ' Nagano Cakeについて', about_path %></li>
             <li><%= link_to ' 商品一覧', admin_products_path %></li>
             <li><%= link_to ' 会員一覧', admin_users_path %></li>
             <li><%= link_to ' 注文一覧', admin_orders_path %></li>
