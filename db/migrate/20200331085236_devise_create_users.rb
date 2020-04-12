@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :post_number
       t.string :address
       t.string :phone_number
-      t.integer :profile_status
+      t.integer :profile_status, default: 0
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

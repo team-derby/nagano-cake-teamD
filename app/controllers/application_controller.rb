@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  $g_is_deleted = false
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   #デバイス機能実行前にconfigure_permitted_parametersの実行をする。
   protect_from_forgery with: :exception
@@ -14,7 +17,12 @@ class ApplicationController < ActionController::Base
   end
   #sign_out後のredirect先変更する。rootパスへ。rootパスはhome topを設定済み。
   def after_sign_out_path_for(resource)
-    user_root_path
+    if $g_is_deleted
+      $g_is_deleted = false
+      new_user_registration_path
+    else
+      user_root_path
+    end
   end
 
   def configure_permitted_parameters

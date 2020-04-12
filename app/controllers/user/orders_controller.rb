@@ -1,6 +1,11 @@
 class User::OrdersController < ApplicationController
 
+  before_action :baria_user, except: :thanks
+
   def index
+    @user = User.find(params[:user_id])
+    orders = @user.orders
+    @total = 0
   end
 
   def new
@@ -31,6 +36,9 @@ class User::OrdersController < ApplicationController
       @order.post_name = @delivery.post_name
     end
     #新しいお届け先を選択した場合(if params[:addresses] == "3"はいらない
+    # 注文情報入力→注文情報確認へのバリデーション
+    @order.user_id = @user.id
+    render :new if @order.invalid?
   end
 
   def create
@@ -61,6 +69,10 @@ class User::OrdersController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @order = Order.find(params[:id])
+    orders = current_user.orders
+    cart_items = current_user.cart_items
   end
 
   private
@@ -68,5 +80,14 @@ class User::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:user_id, :postage, :total_price, :request_status, :post_number, :post_address, :post_name, :post_phone_number, :payment_method)
   end
+
+  #url直接防止　メソッドを自己定義してbefore_actionで発動。
+   def baria_user
+    @user = User.find(params[:user_id])
+    @adimin = Admin.all
+    unless params[:user_id].to_i == @user.id || current_user == @admin
+      redirect_to user_root_path
+    end
+   end
 
 end

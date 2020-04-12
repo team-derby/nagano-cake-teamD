@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
     t.string "post_number"
     t.string "address"
     t.string "phone_number"
-    t.integer "profile_status"
+    t.integer "profile_status", default: 0
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
