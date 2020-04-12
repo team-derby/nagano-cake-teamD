@@ -3,7 +3,7 @@ class User::UsersController < ApplicationController
   before_action :baria_user, except: [:top, :about]
 
   def top
-    @randoms = Product.order("RANDOM()").limit(4)
+    @randoms = Product.includes(:genre).where(genres: { active_status: "0"}).order("RANDOM()").limit(4)
     @genres = Genre.where(active_status: 0)
   end
 
