@@ -1,6 +1,6 @@
 class User::UsersController < ApplicationController
 
-  before_action :baria_user, except: [:top, :about]
+  before_action :baria_user, except: [:top, :about, :confirm]
 
   def top
     @randoms = Product.includes(:genre).where(genres: { active_status: "0"}).order("RANDOM()").limit(4)
