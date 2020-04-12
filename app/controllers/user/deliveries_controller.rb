@@ -1,5 +1,8 @@
 class User::DeliveriesController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :baria_user
+
   def index
     @delivery = Delivery.new
     @user = User.find(params[:user_id])
@@ -25,7 +28,7 @@ class User::DeliveriesController < ApplicationController
     if @delivery.update(delivery_params)
       redirect_to user_user_deliveries_path(user_id: current_user.id), notice: "配送先の編集が完了しました！"
     else
-      render :index
+      render :edit
     end
   end
 
@@ -40,5 +43,12 @@ class User::DeliveriesController < ApplicationController
   def delivery_params
     params.require(:delivery).permit(:user_id, :post_number, :post_address, :post_name, :post_phone_number)
   end
+
+  #url直接防止　メソッドを自己定義してbefore_actionで発動。
+   def baria_user
+    unless params[:user_id].to_i == current_user.id
+      redirect_to user_root_path
+    end
+   end
 
 end

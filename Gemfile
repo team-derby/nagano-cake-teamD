@@ -91,3 +91,6 @@ gem 'jquery-rails'
 
 gem 'paranoia'
 # 論理削除
+
+gem 'dotenv-rails'
+# 環境変数

@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
     t.integer "order_id"
     t.integer "product_id"
     t.integer "count"
-    t.integer "production_status"
+    t.integer "production_status", default: 0
     t.integer "tax_included_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "postage", default: 1
+    t.integer "postage", default: 800
     t.integer "total_price"
-    t.integer "request_status"
+    t.integer "request_status", default: 0
     t.string "post_number"
     t.string "post_address"
     t.string "post_name"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_084333) do
     t.string "post_number"
     t.string "address"
     t.string "phone_number"
-    t.integer "profile_status"
+    t.integer "profile_status", default: 0
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

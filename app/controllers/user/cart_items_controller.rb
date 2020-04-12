@@ -1,5 +1,8 @@
 class User::CartItemsController < ApplicationController
+
   before_action :authenticate_user!
+  before_action :baria_user
+
   def index
     @user = current_user
     cart_items = current_user.cart_items
@@ -8,7 +11,7 @@ class User::CartItemsController < ApplicationController
       @total += (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count
     end
   end
-  
+
   def create
     # Cart.newにcountの値を入れる(ストロングパラメータ使う？)
     @cart_item = CartItem.new(cart_params)
@@ -51,5 +54,12 @@ class User::CartItemsController < ApplicationController
   def cart_params
     params.require(:cart_item).permit(:count, :product_id)
   end
+
+  #url直接防止　メソッドを自己定義してbefore_actionで発動。
+   def baria_user
+    unless params[:user_id].to_i == current_user.id
+      redirect_to user_root_path
+    end
+   end
 
 end

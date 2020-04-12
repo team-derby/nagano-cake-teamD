@@ -9,9 +9,18 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    self.resource = warden.authenticate!(auth_options)
+      user = User.where(id:self.resource.id)
+      if user[0].profile_status_before_type_cast == 1
+        $g_is_deleted = true
+        sign_out_and_redirect(new_user_registration_path)
+        return
+      else
+        super
+        return
+      end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
