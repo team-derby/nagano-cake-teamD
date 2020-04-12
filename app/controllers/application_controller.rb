@@ -5,9 +5,13 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(resource)
-    user_root_path
+    case resource
+    when Admin
+      admin_admins_top_path
+    when User
+      user_root_path
+    end
   end
-
   #sign_out後のredirect先変更する。rootパスへ。rootパスはhome topを設定済み。
   def after_sign_out_path_for(resource)
     user_root_path
