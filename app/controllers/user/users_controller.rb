@@ -1,10 +1,13 @@
 class User::UsersController < ApplicationController
 
-  before_action :authenticate_user!, except: [:top]
+  before_action :baria_user, except: [:top, :about]
 
   def top
     @randoms = Product.order("RANDOM()").limit(4)
     @genres = Genre.where(active_status: 0)
+  end
+
+  def about
   end
 
   def show
@@ -39,7 +42,7 @@ class User::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :post_number, :address, :phone_number, :email)
   end
-  
+
   def authenticate_team!
     @user = User.find(current_user.id)
     return unless user_signed_in? && @user.profile_status?
@@ -51,7 +54,7 @@ class User::UsersController < ApplicationController
   #url直接防止　メソッドを自己定義してbefore_actionで発動。
    def baria_user
     unless params[:id].to_i == current_user.id
-      redirect_to user_path(current_user)
+      redirect_to user_root_path
     end
    end
 
