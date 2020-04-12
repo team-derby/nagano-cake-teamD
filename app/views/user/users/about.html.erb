@@ -19,7 +19,7 @@
 
   <div class="col-xs-6" style="margin-bottom: 30px">
     <h2 style="font-family: 'Noto Sans JP', sans-serif;">Map</h2>
-    <div id='map' class="長野県長野市北尾張部"></div>
+    <div id='map' class="<%= @map_address %>"></div>
     <style>
       #map{
         height: 400px;
@@ -55,7 +55,7 @@
 
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
-        zoom: 9
+        zoom: 16
       });
     }
 
@@ -74,7 +74,7 @@
       <h2 style="font-family: 'Noto Sans JP', sans-serif;">Shop detail</h2>
       <h4><u>address</u></h4>
       <p>〒381-0014
-        <br>長野県 長野市北尾張部 397-1
+        <br>長野県 <%= @map_address %>
       </p>
       <h4><u>tel</u></h4>
       <p>00-0000-0000</p>
