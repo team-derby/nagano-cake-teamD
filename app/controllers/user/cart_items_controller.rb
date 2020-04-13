@@ -32,13 +32,28 @@ class User::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_params)
-    redirect_to user_user_cart_items_path
+    # ajaxを発火させるためredirectは削除
+    # renderでindexに飛ぶのに＠@user、@totalを表示するのに必要名ため追記(indexと同じ内容)
+    @user = current_user
+    cart_items = current_user.cart_items
+    @total = 0
+    cart_items.each do |cart_item|
+      @total += (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count
+    end
+
   end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to user_user_cart_items_path
+    # ajaxを発火させるためredirectは削除
+    # renderでindexに飛ぶのに＠@user、@totalを表示するのに必要名ため追記(indexと同じ内容)
+    @user = current_user
+    cart_items = current_user.cart_items
+    @total = 0
+    cart_items.each do |cart_item|
+      @total += (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count
+    end
   end
 
   def destroy_all

@@ -8,6 +8,7 @@ class User::UsersController < ApplicationController
   end
 
   def about
+    @map_address = "長野市大字北尾張部３９７−１"
   end
 
   def show

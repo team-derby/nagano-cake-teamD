@@ -5,17 +5,7 @@
       <%= form_for @genre, url: admin_genre_path, method: :patch do |f| %>
 
       　<!-- エラーメッセージ -->
-        <% if @genre.errors.any? %>
-          <div id="error_explanation">
-            <h3><%= pluralize(@genre.errors.count, "error") %> prohibited this product from being saved:</h3>
-
-            <ul>
-            <% @genre.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'layouts/errors', obj: @genre %>
 
         <!-- 入力フォーム -->
         <div class="genre-field">

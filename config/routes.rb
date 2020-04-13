@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
+
+  # letter_opener用のルーティング
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   # ユーザー側のルーティング
   namespace :user do
     root 'users#top' #トップ画面
