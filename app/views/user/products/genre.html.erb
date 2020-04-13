@@ -1,7 +1,7 @@
 <div class="row">
   <div class = "col-xs-3">
     <!-- サイドバーの部分テンプレート -->
-    <%= render "sidebar", genres: @genres %>
+    <%= render "sidebar", genres: @genres, q: @q %>
   </div>
   <div class="col-xs-9">
     <h2 class="head">商品一覧(全<%= @products.count %>件)</h2>

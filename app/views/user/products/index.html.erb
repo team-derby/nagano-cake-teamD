@@ -1,14 +1,7 @@
 <div class="row">
   <div class = "col-xs-3">
     <!-- サイドバーの部分テンプレート -->
-    <%= render "sidebar", genres: @genres %>
-    <%= search_form_for @search do |f| %>
-      <%= f.label :name_cont, "商品名を含む" %>
-      <%= f.search_field :name_cont %>
-      <div class="actions"><%= f.submit "検索" %></div>
-    <% end %>
-  <div class="actions"><%= f.submit "検索" %></div>
-<% end %>
+    <%= render "sidebar", genres: @genres, q: @q %>
   </div>
   <div class="col-xs-9">
     <h2 class="head">商品一覧(全<%= @products.count %>件)</h2>

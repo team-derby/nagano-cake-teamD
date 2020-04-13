@@ -2,7 +2,7 @@
     <p id="notice"><%= notice %></p>
     <div class = "col-xs-3">
     <!-- サイドバーの部分テンプレート -->
-        <%= render "user/products/sidebar", genres: @genres %>
+        <%= render "user/products/sidebar", genres: @genres, q: @q %>
     </div>
     <div class="col-xs-9">
         <div class="row">

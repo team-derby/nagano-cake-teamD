@@ -41,6 +41,15 @@
             <li><%= link_to ' ログイン', user_session_path %></li>
             <% end %>
           </ul>
+          <% if admin_signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+            <%= search_form_for @q, url: user_products_path do |f| %>
+              <%= f.label :name_cont, "商品名" %>
+              <%= f.search_field :name_cont %>
+              <div class="actions"><%= f.submit "検索" %></div>
+            <% end %>
+          </ul>
+          <% end %>
         </nav>
     </header>
     <!--ヘッダーの記述-->
