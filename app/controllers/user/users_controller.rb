@@ -1,13 +1,14 @@
 class User::UsersController < ApplicationController
 
-  before_action :baria_user, except: [:top, :about]
+  before_action :baria_user, except: [:top, :about, :confirm]
 
   def top
-    @randoms = Product.order("RANDOM()").limit(4)
+    @randoms = Product.includes(:genre).where(genres: { active_status: "0"}).order("RANDOM()").limit(4)
     @genres = Genre.where(active_status: 0)
   end
 
   def about
+    @map_address = "長野市大字北尾張部３９７−１"
   end
 
   def show

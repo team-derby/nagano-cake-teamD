@@ -2,7 +2,8 @@ class User::ProductsController < ApplicationController
 
   def index
     # ジャンルテーブルと結合させ、ジャンルテーブルが有効なレコードを取得
-    @products = Product.includes(:genre).where(genres: { active_status: "0"}).page(params[:page])
+    @q = Product.runsack(params[:q]).page(params[:page])
+    @products = @q.result
     @genres = Genre.where(active_status: 0)
   end
 

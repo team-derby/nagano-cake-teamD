@@ -1,23 +1,18 @@
 <div class="contaier">
   <div class="row">
     <h2><span style="background-color: #F5F5F5;">配送先編集</span></h2>
+
     <!-- フラッシュメッセージ -->
     <p id="notice"><%= notice %></p>
+
       <%= form_for @delivery, url: user_user_delivery_path(user_id: current_user.id, id: @delivery.id), method: :patch do |f| %>
+
+        <!-- エラーメッセージ -->
+        <%= render 'layouts/errors', obj: @delivery %>
+
       <table style="border:none; border-collapse: separate;
 border-spacing: 20px 10px;" width="700">
-        <!-- エラーメッセージ -->
-        <% if @delivery.errors.any? %>
-        <div id="error_explanation">
-          <h3><%= pluralize(@delivery.errors.count, "error") %> prohibited this product from being saved:</h3>
 
-          <ul>
-          <% @delivery.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
         <tr>
           <th><%= f.label :'郵便番号(ハイフンなし)' %></th>
           <td><%= f.text_field :post_number %></td>
