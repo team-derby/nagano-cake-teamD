@@ -4,7 +4,7 @@
     <%= render "sidebar", genres: @genres %>
   </div>
   <div class="col-xs-9">
-    <h2 class="head">商品一覧(全<%= @products.count %>件)</h2>
+    <h2 class="head">商品一覧(全<%= @products_all.count %>件)</h2>
     <ul class="product-group clearfix">
         <% @products.each do |product| %>
           <li>
