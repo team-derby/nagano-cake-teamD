@@ -13,29 +13,27 @@
     <% if @product.sales_status == "売切れ" %>
       <p class="sold-out">売切れ</p>
     <% end %>
-  </div>
-</div>
-<div class="row">
-  <% if @product.sales_status == "売切れ" %>
-    <p class="sold-out"></p>
-  <% else %>
-   <% if user_signed_in? %>
-    <%= form_for(@cart_item, url: user_user_cart_items_path(current_user), method: :post) do |f| %>
-      <div class="field row">
-        <%= f.select :count, [*1..10], include_blank: "個数選択" %>
-      </div>
-      <%= f.hidden_field :product_id, value: @product.id %>
-      <div class="actions row">
-        <%= f.submit "カートに入れる" %>
-      </div>
+    <% if @product.sales_status == "売切れ" %>
+      <p class="sold-out"></p>
+    <% else %>
+      <% if user_signed_in? %>
+        <%= form_for(@cart_item, url: user_user_cart_items_path(current_user), method: :post) do |f| %>
+          <div class="field row">
+            <%= f.select :count, [*1..10], include_blank: "個数選択" %>
+          </div>
+        <%= f.hidden_field :product_id, value: @product.id %>
+          <div class="actions row">
+            <%= f.submit "カートに入れる" %>
+          </div>
+      <% end %>
+    <% else %>
+          <div class="field row">
+            <%= select_tag 'name', options_for_select([*1..10]), include_blank: "個数選択" %>
+          </div>
+          <div class="actions row">
+            <%= link_to "カートに入れる", new_user_session_path %>
+          </div>
+       <% end %>
     <% end %>
-   <% else %>
-      <div class="field row">
-        <%= select_tag 'name', options_for_select([*1..10]), include_blank: "個数選択" %>
-      </div>
-      <div class="actions row">
-        <%= link_to "カートに入れる", new_user_session_path %>
-      </div>
-   <% end %>
-  <% end %>
+  </div>
 </div>
