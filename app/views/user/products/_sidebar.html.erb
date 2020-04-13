@@ -8,3 +8,15 @@
       </li>
     <% end %>
 </ul>
+
+<ul class= "genre-side-bar">
+  <li class= "genre-head">商品名検索</li>
+    <%= search_form_for q, url: user_products_path do |f| %>
+      <%= f.label :name_cont, "商品名" %>
+      <%= f.search_field :name_cont %>
+      <div class="actions"><%= f.submit "検索" %></div>
+    <% end %>
+</ul>
+
+
+
