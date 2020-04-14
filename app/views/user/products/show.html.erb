@@ -4,7 +4,7 @@
     <%= render "sidebar", genres: @genres, q: @q %>
   </div>
   <div class="col-xs-4">
-    <%= attachment_image_tag(product, :image, :fill, 300, 300, fallback: "no_image.jpg", size:'300x300') %>
+    <%= attachment_image_tag(@product, :image, :fill, 300, 300, fallback: "no_image.jpg", size:'300x300') %>
   </div>
   <div class="col-xs-5">
     <h3><%= @product.name %></h3>

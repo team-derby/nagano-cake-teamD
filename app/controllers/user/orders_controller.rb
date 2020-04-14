@@ -71,7 +71,6 @@ class User::OrdersController < ApplicationController
   def show
     @user = current_user
     @order = Order.find(params[:id])
-    orders = current_user.orders
     cart_items = current_user.cart_items
   end
 
