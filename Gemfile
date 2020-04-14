@@ -96,3 +96,6 @@ gem 'paranoia'
 
 gem 'dotenv-rails'
 # 環境変数
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
