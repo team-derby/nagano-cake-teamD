@@ -1,60 +1,69 @@
 <h2>注文詳細画面</h2>
-<table>
-	<tr>
-	<th>購入者</th><td><%= @order.user.first_name_kanji %><%= @order.user.last_name_kanji %></td>
-	</tr>
-	<tr>
-	<th>配送先</th><td><%= @order.post_number %><%= @order.post_address %></td>
-	</tr>
-	<tr>
-	<th></th><td><%= @order.post_name %></td>
-	</tr>
-	<tr>
-	<th>支払い方法</th><td><%= @order.payment_method %></td>
-	</tr>
-	<tr>
-	<th>注文ステータス</th>
-	<td>
-		<%= form_for(@order, url: {controller: "orders", action: "update"}) do |f|%>
-			<%= f.select :request_status, Order.request_statuses.keys, {} %>
-		<%= f.submit '送信'%>
-		<% end %>
-	</td>
-	</tr>
-</table>
-
-<table>
-	<tr>
-		<th>商品名</th>
-		<th>単価(税込)</th>
-		<th>数量</th>
-		<th>小計</th>
-		<th>制作ステータス</th>
-	</tr>
-	<% @order_items.each do |order_item| %>
-		<tr>
-			<td><%= order_item.product.name %></td>
-			<td><%= order_item.tax_included_price %></td>
-			<td><%= order_item.count %></td>
-			<td><%= (order_item.sub_total_price).to_i %></td>
+	<div class="col-xs-8">
+		<h3>注文者情報</h3>
+		<table class="table">
+			<tr>
+			<th>購入者</th><td><%= @order.user.first_name_kanji %><%= @order.user.last_name_kanji %></td>
+			</tr>
+			<tr>
+			<th>配送先</th><td>〒<%= @order.post_number %>  <%= @order.post_address %></td>
+			</tr>
+			<tr>
+			<th></th><td><%= @order.post_name %>  様</td>
+			</tr>
+			<tr>
+			<th>支払い方法</th><td><%= @order.payment_method %></td>
+			</tr>
+			<tr>
+			<th>注文ステータス</th>
 			<td>
-				<%= form_for order_item, url: {controller: "orders", action: "update"} do |f| %>
-					<%= f.hidden_field :id, :value => order_item.id %>
-					<%= f.select :production_status, OrderItem.production_statuses.keys, {} %>
-					<%= f.submit '送信'%>
+				<%= form_for(@order, url: {controller: "orders", action: "update"}) do |f|%>
+					<%= f.select :request_status, Order.request_statuses.keys, {} %>
+				<%= f.submit '送信'%>
 				<% end %>
 			</td>
-		</tr>
-	<% end %>
-</table>
-<table>
-	<tr>
-	<th>商品合計</th><td><%= (@order.products_total_price).to_i %></td>
-	</tr>
-	<tr>
-	<th>送料</th><td><%= @order.postage %></td>
-	</tr>
-	<tr>
-	<th>請求金額合計</th><td><%= @order.total_price %></td>
-	</tr>
-</table>
+			</tr>
+		</table>
+		<h3>注文内容</h3>
+		<table class="table">
+			<tr>
+				<th>商品名</th>
+				<th>単価(税込)</th>
+				<th>数量</th>
+				<th>小計</th>
+				<th>制作ステータス</th>
+			</tr>
+			<% @order_items.each do |order_item| %>
+				<tr>
+					<td><%= order_item.product.name %></td>
+					<td><%= order_item.tax_included_price %>円</td>
+					<td><%= order_item.count %></td>
+					<td><%= (order_item.sub_total_price).to_i %>円</td>
+					<td>
+						<%= form_for order_item, url: {controller: "orders", action: "update"} do |f| %>
+							<%= f.hidden_field :id, :value => order_item.id %>
+							<%= f.select :production_status, OrderItem.production_statuses.keys, {} %>
+							<%= f.submit '送信'%>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	<div class="col-xs-4">
+		<div class="fixed-bottom">
+			<h3>請求情報</h3>
+			<table class="table">
+				<tr>
+				<th>商品合計</th><td><%= (@order.products_total_price).to_i %>円</td>
+				</tr>
+				<tr>
+				<th>送料</th><td><%= @order.postage %>円</td>
+				</tr>
+				<tr>
+				<th>請求金額合計</th><td><%= @order.total_price %>円</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
