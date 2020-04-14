@@ -22,7 +22,7 @@ class User::CartItemsController < ApplicationController
     # product_idの値を設定する
     # 下の行を使う場合、上の(cart_params)を消す(updateアクションを2回処理してしまうため)
     # @cart_item.product_id = params[:cart_item][:product_id].to_i
-    
+
     # もしproduct_idとuser_idを持つcart_itemが既に存在する場合の処理
     if CartItem.find_by(user_id: current_user, product_id: @cart_item.product_id)
       # 上記の物を、下の変数の中に再定義

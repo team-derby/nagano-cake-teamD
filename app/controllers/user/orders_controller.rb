@@ -69,9 +69,14 @@ class User::OrdersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:user_id])
     @order = Order.find(params[:id])
+<<<<<<< HEAD
     cart_items = current_user.cart_items
+=======
+    orders = @user.orders
+    cart_items = @user.cart_items
+>>>>>>> 0a15bd49bb868bc17019aea497f263934981f082
   end
 
   private
