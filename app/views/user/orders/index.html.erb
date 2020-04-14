@@ -44,12 +44,10 @@
               <% end %>
             </td>
             <td>
-              <% order.order_items.each do |order_item|%>
-                <%= @total += (order_item.tax_included_price * order_item.product.tax_rate).round * order_item.count %>
-              <% end %>
+              <%= order.total_price - order.postage %>
             </td>
             <td><%= order.request_status %></td>
-            <td><%= link_to "表示する", user_user_order_path(id: order.id), method: :get, class: 'btn btn-danger btn-md' %></td>
+            <td><%= link_to "表示する", user_user_order_path(id: order.id), method: :get, class: "btn btn-primary" %></td>
           </tr>
         <% end %>
       </tbody>
