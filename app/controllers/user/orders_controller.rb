@@ -69,10 +69,10 @@ class User::OrdersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:user_id])
     @order = Order.find(params[:id])
-    orders = current_user.orders
-    cart_items = current_user.cart_items
+    orders = @user.orders
+    cart_items = @user.cart_items
   end
 
   private
