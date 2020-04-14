@@ -4,7 +4,7 @@ class User::ProductsController < ApplicationController
     # ジャンルテーブルと結合させ、ジャンルテーブルが有効なレコードを取得
     @products = @q.result.includes(:genre).where(genres: { active_status: 0}).page(params[:page])
     @genres = Genre.where(active_status: 0)
-    @products_all = Product.all
+    @products_all = @q.result.includes(:genre).where(genres: { active_status: 0})
   end
 
   def show
