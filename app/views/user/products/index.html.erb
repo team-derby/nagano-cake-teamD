@@ -4,12 +4,12 @@
     <%= render "sidebar", genres: @genres, q: @q %>
   </div>
   <div class="col-xs-9">
-    <h2 class="head">商品一覧(全<%= @products_all.count %>件)</h2>
+    <h2 class="head">商品一覧(全<%= @products.count %>件)</h2>
     <ul class="product-group clearfix">
         <% @products.each do |product| %>
           <li>
             <%= link_to user_product_path(product) do %>
-              <%= attachment_image_tag(product, :image, :fill, 120, 120, fallback: "no_image.jpg") %>
+              <%= attachment_image_tag(product, :image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120') %>
               <p><%= product.name %></p>
             <% end %>
               <p>¥<%= (product.price * product.tax_rate).round %>(税込)</p>

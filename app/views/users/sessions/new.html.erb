@@ -1,20 +1,27 @@
-<h2>ログイン画面</h2>
+<div class = "row"></div>
+  <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+  <div class="card-body">
+    <h2 class="mt-1 mb-3">Nagano Cake ログインページ</h2>
+    <div class="form-group">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :メールアドレス, :class => "form-label" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field">
+        <%= f.label :パスワード, :class => "form-label" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", :class => "form-control" %>
+      </div>
+      <br>
+
+      <div class="actions">
+        <%= f.submit "ログイン", :class => "btn btn-primary btn-block" %>
+      </div>
+      <% end %>
+      <%= render "users/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-<%= link_to 'パスワードを忘れた方はこちら', new_user_password_path %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
+<div class="col-sm-3"></div>

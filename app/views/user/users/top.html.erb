@@ -15,16 +15,17 @@
             </div>
         </div>
         <div class="row">
+            <h2>おすすめ商品</h2>
             <% @randoms.each do |random| %>
                 <div class="col-md-2">
                     <div>
                         <%= link_to user_product_path(random) do %>
 
-                          <%= attachment_image_tag(random, :image, :fill, 120, 120, fallback: "no_image.jpg") %>
+                          <%= attachment_image_tag(random, :image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120') %>
 
                         <% end %>
                         <p class="name"><%= random.name %></p>
-                        <p class="price"><%= random.price %></p>
+                        <p class="price"><%= random.price %>円(税抜)</p>
                         <% if random.sales_status == "売切れ" %>
                             <p class="sold-out">売切れ</p>
                         <% end %>
