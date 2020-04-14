@@ -1,7 +1,7 @@
 <div class="row">
   <div class = "col-xs-3">
     <!-- サイドバーの部分テンプレート -->
-    <%= render "sidebar", genres: @genresq, q: @q %>
+    <%= render "sidebar", genres: @genres, q: @q %>
   </div>
   <div class="col-xs-4">
     <%= attachment_image_tag(@product, :image, :fill, 300, 300, fallback: "no_image.jpg") %>

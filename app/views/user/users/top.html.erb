@@ -25,6 +25,9 @@
                         <% end %>
                         <p class="name"><%= random.name %></p>
                         <p class="price"><%= random.price %></p>
+                        <% if random.sales_status == "売切れ" %>
+                            <p class="sold-out">売切れ</p>
+                        <% end %>
                     </div>
                 </div>
             <% end %>
