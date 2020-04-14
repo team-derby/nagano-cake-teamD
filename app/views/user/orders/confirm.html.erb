@@ -1,87 +1,88 @@
-<div class="row">
-  <h2><span style="background-color: #F5F5F5;">注文情報確認</span></h2>
-</div>
-<div class="row">
-  <!-- 商品一覧テーブル -->
-  <div class="col-xs-9">
-    <table class="table table-bordered">
-      <thead>
-        <tr class="active">
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart_items.each do |cart_item| %>
-          <tr>
-            <!-- '&nbsp;'は空白を開けるための文字列 -->
-            <td><%= attachment_image_tag(cart_item.product, :image, :fill, 30, 30, fallback: "no_image.jpg") %>&nbsp;<%= cart_item.product.name %></td>
-            <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
-            <td><%= cart_item.count %></td>
-            <td><%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="container">
+  <div class="row">
+    <h2><span style="background-color: #F5F5F5;">注文情報確認</span></h2>
   </div>
-
-  <!-- 購入確定フォーム -->
-  <%= form_for @order, url: user_user_orders_path(user_id: current_user.id) do |f| %>
-    <div class="col-xs-3">
+  <div class="row">
+    <!-- 商品一覧テーブル -->
+    <div class="col-xs-9">
       <table class="table table-bordered">
-        <tr>
-          <td class="active">送料</td>
-          <td>
-            <%= f.hidden_field :postage %>
-            <%= @order.postage %>
-          </td>
-        </tr>
-        <tr>
-          <td class="active">商品合計</td>
-          <td><%= @total %></td>
-        </tr>
-        <tr>
-          <td class="active">請求金額</td>
-          <td>
-            <!-- valueで渡す値を指定 -->
-            <%= f.hidden_field :total_price, value: @total + @order.postage %>
-            <%= @total + @order.postage %>
-          </td>
-        </tr>
+        <thead>
+          <tr class="active">
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <!-- '&nbsp;'は空白を開けるための文字列 -->
+              <td><%= attachment_image_tag(cart_item.product, :image, :fill, 30, 30, fallback: "no_image.jpg") %>&nbsp;<%= cart_item.product.name %></td>
+              <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
+              <td><%= cart_item.count %></td>
+              <td><%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <table style="border:none; border-collapse: separate;
-  border-spacing: 20px 10px;" width="600">
+
+    <!-- 購入確定フォーム -->
+    <%= form_for @order, url: user_user_orders_path(user_id: current_user.id) do |f| %>
+      <div class="col-xs-3">
+        <table class="table table-bordered">
           <tr>
-            <th>支払い方法</th>
+            <td class="active">送料</td>
             <td>
-              <%= f.hidden_field :payment_method %>
-              <%= @order.payment_method %></td>
+              <%= f.hidden_field :postage %>
+              <%= @order.postage %>
+            </td>
           </tr>
           <tr>
-            <th>お届け先</th>
-            <td>
-              <%= f.hidden_field :post_number %>
-              <%= @order.post_number %>
-              <%= f.hidden_field :post_address %>
-              <%= @order.post_address %></td>
+            <td class="active">商品合計</td>
+            <td><%= @total %></td>
           </tr>
           <tr>
-            <th>
+            <td class="active">請求金額</td>
             <td>
-              <%= f.hidden_field :post_name %>
-              <%= @order.post_name %>
+              <!-- valueで渡す値を指定 -->
+              <%= f.hidden_field :total_price, value: @total + @order.postage %>
+              <%= @total + @order.postage %>
             </td>
           </tr>
         </table>
-        <div class="order-confirm-button" style="text-align: center;">
-          <%= f.submit "購入を確定する", class: "btn btn-lg btn-success" %>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <table style="border:none; border-collapse: separate;
+    border-spacing: 20px 10px;" width="600">
+            <tr>
+              <th>支払い方法</th>
+              <td>
+                <%= f.hidden_field :payment_method %>
+                <%= @order.payment_method %></td>
+            </tr>
+            <tr>
+              <th>お届け先</th>
+              <td>
+                <%= f.hidden_field :post_number %>
+                <%= @order.post_number %>
+                <%= f.hidden_field :post_address %>
+                <%= @order.post_address %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.hidden_field :post_name %>
+                <%= @order.post_name %>
+              </td>
+            </tr>
+          </table>
+          <div class="order-confirm-button" style="text-align: center;">
+            <%= f.submit "購入を確定する", class: "btn btn-lg btn-success" %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

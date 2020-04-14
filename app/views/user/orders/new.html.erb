@@ -1,58 +1,60 @@
-<div class="row">
-  <h2><span style="background-color: #F5F5F5;">注文情報入力</span></h2>
-  <%= form_for @order, url: { action: :confirm, user_id: current_user.id  } do |f| %>
+<div class="container">
+  <div class="row">
+    <h2><span style="background-color: #F5F5F5;">注文情報入力</span></h2>
+    <%= form_for @order, url: { action: :confirm, user_id: current_user.id  } do |f| %>
 
-    <!-- エラーメッセージ -->
-      <%= render 'layouts/errors', obj: @order %>
+      <!-- エラーメッセージ -->
+        <%= render 'layouts/errors', obj: @order %>
 
-    <!-- 入力フォーム -->
-    <div class="order-field" style="line-height: 200%;">
-      <h3 style="font-weight: bold;">支払方法</h3>
-        <div class="mgl-15">
-          <%= f.radio_button :payment_method , :"クレジットカード" %>
-          <%= f.label :クレジットカード %>
-          <br>
-          <%= f.radio_button :payment_method , :"銀行振込" %>
-          <%= f.label :銀行振込 %>
-        </div>
+      <!-- 入力フォーム -->
+      <div class="order-field" style="line-height: 200%;">
+        <h3 style="font-weight: bold;">支払方法</h3>
+          <div class="mgl-15">
+            <%= f.radio_button :payment_method , :"クレジットカード" %>
+            <%= f.label :クレジットカード %>
+            <br>
+            <%= f.radio_button :payment_method , :"銀行振込" %>
+            <%= f.label :銀行振込 %>
+          </div>
 
-      <!-- 住所選択 -->
-      <h3 style="font-weight: bold;">お届け先</h3>
-        <div class="mgl-15">
-          <%= radio_button_tag("addresses" , "1") %>
-          <%= label_tag("addresses_1","ご自身の住所") %>
-          <br>
-          <span class="mgl-15"><%= @user.post_number + @user.address %></span>
-          <br>
-          <span class="mgl-15"><%= @user.first_name_kanji + @user.last_name_kanji %></span>
-          <br>
-          <%= radio_button_tag("addresses", "2") %>
-          <%= label_tag("addresses_2","登録済住所から選択") %>
-          <br>
-          <span class="mgl-15"><%= collection_select(:@registered_deliveries, :registered_deliveries, Delivery.where(user_id: current_user.id), :id, :view_addresses, {include_blank: "---"}) %></span>
-          <br>
-          <%= radio_button_tag("addresses" , "3") %>
-          <%= label_tag("addresses_3","新しいお届け先") %>
-          <table style="border:none; border-collapse: separate;
-border-spacing: 20px 10px;" width="800" >
-            <tr>
-              <td><%= f.label :'郵便番号(ハイフンなし)' %></td>
-              <td><%= f.text_field :post_number, size: "30x10" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :'住所' %></td>
-              <td><%= f.text_field :post_address, size: "60x10" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :'宛名' %></td>
-              <td><%= f.text_field :post_name, size: "30x10" %></td>
-            </tr>
-          </table>
-        </div>
+        <!-- 住所選択 -->
+        <h3 style="font-weight: bold;">お届け先</h3>
+          <div class="mgl-15">
+            <%= radio_button_tag("addresses" , "1") %>
+            <%= label_tag("addresses_1","ご自身の住所") %>
+            <br>
+            <span class="mgl-15"><%= @user.post_number + @user.address %></span>
+            <br>
+            <span class="mgl-15"><%= @user.first_name_kanji + @user.last_name_kanji %></span>
+            <br>
+            <%= radio_button_tag("addresses", "2") %>
+            <%= label_tag("addresses_2","登録済住所から選択") %>
+            <br>
+            <span class="mgl-15"><%= collection_select(:@registered_deliveries, :registered_deliveries, Delivery.where(user_id: current_user.id), :id, :view_addresses, {include_blank: "---"}) %></span>
+            <br>
+            <%= radio_button_tag("addresses" , "3") %>
+            <%= label_tag("addresses_3","新しいお届け先") %>
+            <table style="border:none; border-collapse: separate;
+  border-spacing: 20px 10px;" width="800" >
+              <tr>
+                <td><%= f.label :'郵便番号(ハイフンなし)' %></td>
+                <td><%= f.text_field :post_number, size: "30x10" %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :'住所' %></td>
+                <td><%= f.text_field :post_address, size: "60x10" %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :'宛名' %></td>
+                <td><%= f.text_field :post_name, size: "30x10" %></td>
+              </tr>
+            </table>
+          </div>
 
-    </div>
-    <div class="order-check-button">
-      <%= f.submit "確認画面へ進む", class: "btn btn-lg btn-primary" %>
-    </div>
-  <% end %>
+      </div>
+      <div class="order-check-button">
+        <%= f.submit "確認画面へ進む", class: "btn btn-lg btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
