@@ -1,5 +1,6 @@
 <h2>注文詳細画面</h2>
-<table>
+<table style="border:none; border-collapse: separate;
+border-spacing: 20px 10px;" width="700">
 	<tr>
 	<th>購入者</th><td><%= @order.user.first_name_kanji %><%= @order.user.last_name_kanji %></td>
 	</tr>
@@ -17,13 +18,15 @@
 	<td>
 		<%= form_for(@order, url: {controller: "orders", action: "update"}) do |f|%>
 			<%= f.select :request_status, Order.request_statuses.keys, {} %>
-		<%= f.submit '送信'%>
+		<%= f.submit '更新', class: "btn btn-primary" %>
 		<% end %>
 	</td>
 	</tr>
 </table>
 
-<table>
+<br>
+<div class="col-xs-9">
+<table class="table">
 	<tr>
 		<th>商品名</th>
 		<th>単価(税込)</th>
@@ -41,13 +44,16 @@
 				<%= form_for order_item, url: {controller: "orders", action: "update"} do |f| %>
 					<%= f.hidden_field :id, :value => order_item.id %>
 					<%= f.select :production_status, OrderItem.production_statuses.keys, {} %>
-					<%= f.submit '送信'%>
+					<%= f.submit '更新', class: "btn btn-primary" %>
 				<% end %>
 			</td>
 		</tr>
 	<% end %>
 </table>
-<table>
+</div>
+<div class="col-xs-3">
+<table style="border:none; border-collapse: separate;
+border-spacing: 20px 10px;">
 	<tr>
 	<th>商品合計</th><td><%= (@order.products_total_price).to_i %></td>
 	</tr>
@@ -58,3 +64,4 @@
 	<th>請求金額合計</th><td><%= @order.total_price %></td>
 	</tr>
 </table>
+</div>
