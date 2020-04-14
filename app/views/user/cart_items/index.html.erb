@@ -1,7 +1,11 @@
 <div class="container">
-  <div class="row">
+ <div class="row">
+  <div class="pull-left", "col-xs-1">
     <h2><span style="background-color: #F5F5F5;">ショッピングカート</span></h2>
+  </div>
+  <div class="pull-right", "col-xs-1">
     <%= link_to "カートを空にする", destroy_all_user_user_cart_items_path, method: :delete, data: {confirm: "本当に空にしてもよろしいですか？"}, class: 'btn btn-danger btn-md' %>
+  </div>
     <!-- フラッシュメッセージ -->
     <!-- <p id="notice"><%= notice %></p> -->
     <!-- <table style="border:none;" width="600"> -->
