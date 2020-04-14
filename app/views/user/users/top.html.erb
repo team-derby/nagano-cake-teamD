@@ -2,7 +2,7 @@
     <p id="notice"><%= notice %></p>
     <div class = "col-xs-3">
     <!-- サイドバーの部分テンプレート -->
-        <%= render "user/products/sidebar", genres: @genres %>
+        <%= render "user/products/sidebar", genres: @genres, q: @q %>
     </div>
     <div class="col-xs-9">
         <div class="row">
@@ -20,11 +20,14 @@
                     <div>
                         <%= link_to user_product_path(random) do %>
 
-                          <%= attachment_image_tag(random, :image, 100, 150, :fill, fallback: "no_image.jpg") %>
+                          <%= attachment_image_tag(random, :image, :fill, 120, 120, fallback: "no_image.jpg") %>
 
                         <% end %>
                         <p class="name"><%= random.name %></p>
                         <p class="price"><%= random.price %></p>
+                        <% if random.sales_status == "売切れ" %>
+                            <p class="sold-out">売切れ</p>
+                        <% end %>
                     </div>
                 </div>
             <% end %>

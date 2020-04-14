@@ -10,9 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if @user.save
+      ThanksMailer.send_confirm_to_user(@user).deliver
+      # redirect_to @user
+    end
+  end
 
   # GET /resource/edit
   # def edit

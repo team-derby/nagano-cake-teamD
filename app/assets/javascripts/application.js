@@ -16,3 +16,16 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+  $(document).on('turbolinks:load', () => {
+    $('#user_post_number').jpostal({
+      postcode : [
+        '#user_post_number'
+      ],
+      address: {
+        "#user_address": "%3%4%5%6%7", // # 都道府県、市区町村と町域、大口事務所の番地と名称が入力される
+      }
+    });
+  });
+}); 
