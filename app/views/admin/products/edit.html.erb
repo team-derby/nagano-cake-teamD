@@ -1,22 +1,16 @@
 <div class="row">
   <h2 class="heading">商品 編集画面</h2>
+
   <!-- フラッシュメッセージ -->
   <p id="notice"><%= notice %></p>
+
 </div>
 <div class="row">
   <%= form_for @product, url: admin_product_path, method: :patch do |f| %>
-    <!-- エラーメッセージ -->
-    <% if @product.errors.any? %>
-      <div id="error_explanation">
-        <h3><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h3>
 
-        <ul>
-        <% @product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <!-- エラーメッセージ -->
+    <%= render 'layouts/errors', obj: @product %>
+
     <!-- 編集フォーム -->
     <div class="col-xs-4">
       <div class="form-group has-icon">
@@ -31,6 +25,7 @@
         </label>
       </div>
     </div>
+
     <!-- 商品情報入力フォーム -->
     <div class="col-xs-6">
       <table style="border:none; line-height: 200%; border-collapse: separate;

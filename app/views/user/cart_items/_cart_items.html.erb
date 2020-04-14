@@ -1,0 +1,50 @@
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr class="active">
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% user.cart_items.each do |cart_item|%>
+      <tr>
+        <td><%= cart_item.product.name %></td>
+        <td><%= (cart_item.product.price * cart_item.product.tax_rate).round %></td>
+        <td>
+          <%= cart_item.count %>
+          <%# form forを使う %>
+          <%= form_for(cart_item, url: user_user_cart_item_path(id: cart_item.id), method: :patch, remote: true) do |f| %>
+          <!-- remote trueでapp/views/コントローラ名/アクション名.js.erbを探し出し、レンダリングする。 -->
+            <%= f.select :count, [*1..10] %>
+            <%= f.submit "変更" %>
+          <% end %>
+        </td>
+        <td>
+          <%= (cart_item.product.price * cart_item.product.tax_rate).round * cart_item.count %></td>
+          <td><%= link_to "削除する", user_user_cart_item_path(id: cart_item.id), method: :delete, remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: 'btn btn-danger btn-md' %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr class="active">
+      <th>合計金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= total %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "買い物を続ける", user_root_path, method: :get, class: 'btn btn-danger btn-md' %>
+
+<% if user.cart_items.exists? %>
+  <%= link_to "情報入力に進む", new_user_user_order_path(user), method: :get, class: 'btn btn-danger btn-md' %>
+<% end %>

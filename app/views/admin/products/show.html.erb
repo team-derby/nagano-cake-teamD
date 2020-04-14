@@ -1,7 +1,9 @@
 <div class="row">
   <h2 class="heading">商品 詳細画面</h2>
+
   <!-- フラッシュメッセージ -->
   <p id="notice"><%= notice %></p>
+
 </div>
 <div class="row">
   <div class="col-xs-4">
@@ -10,28 +12,18 @@
     </div>
   </div>
   <div class="col-xs-5">
-    <table style="border:none; line-height: 300%; font-size: 16px" width="400">
-      <tr>
-        <td>商品名</td>
-        <td><%= @product.name %></td>
-      </tr>
-      <tr>
-        <td>商品説明</td>
-        <td><%= @product.explanation %></td>
-      </tr>
-      <tr>
-        <td>ジャンル</td>
-        <td><%= @genre.name %></td>
-      </tr>
-      <tr>
-        <td>税込価格 (税抜価格)</td>
-        <td><%= (@product.price * @product.tax_rate).round %> (<%= (@product.price) %>)円</td>
-      </tr>
-      <tr>
-        <td>販売ステータス</td>
-        <td><%= @product.sales_status %></td>
-      </tr>
-    </table>
+    <div class="product-detail">
+      <p>商品名　　</p>
+      <p><font size = '3'><%= @product.name %></font></p>
+      <p style="clear:both;">商品説明　</p>
+      <p><font size = '3'><%= @product.explanation %></font></p>
+      <p style="clear:both;">ジャンル　</p>
+      <p><font size = '3'><%= @genre.name %></font></p>
+      <p style="clear:both;">税込価格 (税抜価格)　</p>
+      <p><font size = '3'><%= (@product.price * @product.tax_rate).round %> (<%= (@product.price) %>)円</font></p>
+      <p style="clear:both;">販売ステータス　</p>
+      <p><font size = '3'><%= @product.sales_status %></font></p>
+    </div>
   </div>
   <div class="col-xs-3">
     <div class="product-button">

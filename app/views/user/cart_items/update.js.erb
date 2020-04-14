@@ -1,0 +1,2 @@
+$(".cart_items<%= @user.id %>").html("<%= j(render 'user/cart_items/cart_items', user: @user, total: @total ) %>")
+// クラス名がcart_items<%= @user.id %>の箇所のみrenderで内容を入れ替え
