@@ -1,42 +1,52 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-xs-3">
       <h2>会員詳細画面</h2>
-      <p id="notice"><%= notice %></p>
-        <table class="table">
-          <tr>
-            <th>顧客ID</th>
-            <td><%= @user.id %><%= @user.profile_status %></td>
-          </tr>
-          <tr>
-            <th>氏名</th>
-            <td><%= @user.first_name_kanji %><%= @user.last_name_kanji %></td>
-          </tr>
-          <tr>
-            <th>フリガナ</th>
-            <td><%= @user.first_name_kana %><%= @user.last_name_kana %></td>
-          </tr>
-          <tr>
-            <th>郵便番号</th>
-            <td><%= @user.post_number %></td>
-          </tr>
-          <tr>
-            <th>住所</th>
-            <td><%= @user.address %></td>
-          </tr>
-          <tr>
-            <th>電話番号</th>
-            <td><%= @user.phone_number %></td>
-          </tr>
-          <tr>
-            <th>メールアドレス</th>
-            <td><%= @user.email %></td>
-          </tr>
-          <tr>
-            <th><%= link_to "編集する", edit_admin_user_path, class: "btn btn-md btn-primary" %></th>
-            <th><%= link_to "注文履歴一覧をする", user_user_orders_path(@user), class: "btn btn-md btn-primary" %></th>
-          </tr>
-        </table>
-    </div>
   </div>
+      <br>
+      <p id="notice"><%= notice %></p>
+    <div class="row">
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="col-sm-3" >顧客ID</div>
+      <div><%= @user.id %>
+      <div class="btn btn-default"><%= @user.profile_status %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" >　氏名</div>
+      <div class="col-sm-1" ><%= @user.first_name_kanji %><%= @user.last_name_kanji %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" >　フリガナ</div>
+      <div><%= @user.first_name_kana %><%= @user.last_name_kana %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" >　郵便番号</div>
+      <div><%= @user.post_number %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" >　住所</div>
+      <div><%= @user.address %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" >　電話番号</div>
+      <div><%= @user.phone_number %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" >　メールアドレス</div>
+      <div><%= @user.email %></div>
+    </div>
+    <br>
+    </div>
+    <div class="row">
+      <div class="col-sm-1" ><%= link_to "編集する", edit_admin_user_path, class: "btn btn-md btn-primary" %></div>
+      <div class="col-sm-1" ><%= link_to "注文履歴一覧をする", user_user_orders_path(@user), class: "btn btn-md btn-primary" %></div>
+    </div>
+    </form>
+    </div>
 </div>

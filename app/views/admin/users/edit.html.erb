@@ -15,48 +15,57 @@
       <% end %>
 
       <h2>会員編集画面</h2>
-        <table class="table">
-          <tr>
-            <th><%= f.label :顧客ID %></th>
-            <td><%= @user.id %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :氏名 %></th>
-            <td><%= f.text_field :first_name_kanji %><%= f.text_field :last_name_kanji %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :フリガナ %></th>
-            <td><%= f.text_field :first_name_kana %><%= f.text_field :last_name_kana %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :郵便番号 %></th>
-            <td><%= f.text_field :post_number %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :住所 %></th>
-            <td><%= f.text_field :address %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :電話番号 %></th>
-            <td><%= f.text_field :phone_number %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :メールアドレス %></th>
-            <td><%= f.text_field :email %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :会員ステータス %></th>
-            <th><%= f.radio_button :profile_status , :有効 %>
-            <%= f.label :有効　 %></th>
-            <th><%= f.radio_button :profile_status , :退会済 %>
-            <%= f.label :退会済み %></th>
-          </tr>
-          <tr>
-            <div class="col-xs-3">
-              <th><%= f.submit "変更点を保存する", class: "btn btn-md btn-primary" %></th>
-            </div>
-          </tr>
-        </table>
+<br>
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="col-sm-3"><%= f.label :顧客ID %></div>
+      <div class="col-sm-1" ><%= @user.id %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :氏名 %></div>
+      <div class="col-sm-3" ><%= f.text_field :first_name_kanji, class: "first_name_kanji" %></div>
+      <div class="col-sm-3" ><%= f.text_field :last_name_kanji, class: "last_name_kanji" %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :フリガナ %></div>
+      <div class="col-sm-3" ><%= f.text_field :first_name_kana, class: "first_name_kana" %></div>
+      <div class="col-sm-3" ><%= f.text_field :last_name_kana, class: "last_name_kana" %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :郵便番号 %></div>
+      <div><%= f.text_field :post_number, class: "col-sm-3" %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :住所 %></div>
+      <div><%= f.text_field :address, class: "col-sm-7" %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :電話番号 %></div>
+      <div><%= f.text_field :phone_number, class: "col-sm-3" %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :メールアドレス %></div>
+      <div><%= f.text_field :email, class: "col-sm-3" %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.label :会員ステータス %></div>
+      <div class="col-sm-2" ><%= f.radio_button :profile_status , :有効 %>
+              <%= f.label :有効　 %></div>
+      <div class="col-sm-2" ><%= f.radio_button :profile_status , :退会済 %>
+              <%= f.label :退会済み %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3" ><%= f.submit "変更点を保存する", class: "btn btn-md btn-primary" %></div>
+    </div>
+  </form>
         <% end %>
     </div>
   </div>
