@@ -6,7 +6,11 @@
 
 - 管理者側で商品の追加、編集が出来ます。
 
+![](https://raw.github.com/wiki/team-derby/nagano-cake-teamD/gif/admin_create_product.gif)
+
 - ユーザー側で商品をカートに入れ、購入することが出来ます。
+
+![](https://raw.github.com/wiki/team-derby/nagano-cake-teamD/gif/user_cart_items_order.gif)
 
 ## Install
 
